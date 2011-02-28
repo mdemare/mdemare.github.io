@@ -1,0 +1,27 @@
+---
+layout: post
+title: On Naming Things
+---
+<h1>{{ page.title }}</h1>
+<h2>When To Choose A Name</h2>
+<p>
+  When you're busy working on a program and have to name a variable or function, don't stop to think about an appropriate name. I suggest instead that you use a very silly name, such as fooFunc123, or blueberryManager. I have two reasons for this madness:
+</p>
+<p>
+  First, choosing a silly name won’t hurt you right away, and not stopping to think of a good name allows you to continue programming and remain in the flow. Secondly, you will need to return to the code later to fix the names, and it will be obvious because the names you've chosen are so silly. Had you given your function an ordinary bad name, such as calculate_results, you might not notice later that the name needed fixing. And if you'd taken the time to choose a good name at once by thinking about it for a minute, you'd have lost focus, and you might have forgotten about an error condition that you needed to check.      </p>
+<p>
+  Of course, if there's an obvious good name, choose that one. But naming things is hard, and it might take you a while, and additionally, the purpose of your new method might not be immediately clear, and take some time to settle.      </p>
+<p>
+  In short, don’t name prematurely; you only name once.
+</p>
+<h2>Those Nameless Things</h2>
+<p>
+  Not everything that needs a name, deserves one. Variables that have a scope of only a short snippet should have unobtrusive names, if they need names at all. Some languages have implicit variables; others have to make do with names such as “it”, “a” or “x”. Choose one and stick to it.
+</p>
+<h2>Informal Types</h2>
+<p>
+  Often, some variables in a program, even one written in a strongly typed language, have not just a type, but also a meaning. In Inglua, I use a type that is a symbol of two characters representing a language. You may have a type that represents the vertical offset from the top of the screen. 
+</p>
+<p>
+  These types are usually primitives: integers, strings, symbols, arrays or hashes. That means that they freely mingle with other variables of the same type, but with a different meaning. To prevent that, I use a glossary of common meanings, and always use the same names or prefixes for the same meanings, sometimes just one letter, but I use those names nowhere else. To a programmer familiar with your code base, this will improve readability immensely.
+</p>
