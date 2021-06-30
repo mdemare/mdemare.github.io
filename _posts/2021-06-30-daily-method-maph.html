@@ -1,0 +1,24 @@
+---
+layout: post
+title: The Daily Method - maph
+---
+<h1>{{ page.title }}</h1>
+<h2>Mapping Over An Array Of Hashes</h2>
+<p>
+  <code>Enumerable#maph</code> is a trivial method (really trivial, in Ruby 3 syntax its definition is <code>def maph(k) = map { _1[k] }</code>) that nevertheless makes working with arrays of hashes a bit nicer.
+  Why define a block when you don't have to?
+</p>
+<p>Usage:</p>
+<pre>pks.sort_by { |f| f["pk"] }.map { |f| f["name"] }</pre>
+<p>turns into:</p>
+<pre>pks.sort_by { |f| f["pk"] }.maph("name")</pre>
+<p><code>maph</code> works with Symbols and Strings, and for that matter on anything that responds to the index operator.</p>
+<p>To add support for other Enumerable methods than <code>map</code> we can add a method to <code>Enumerator</code>. I'll name the method <code>key</code>.
+</p>
+<pre>class Enumerator
+  def key(k) = each { _1[k] }
+end</pre>
+<p>
+Then we can turn our previous example into <code>pks.sort_by.key("pk").map.key("name")</code>
+</p>
+
