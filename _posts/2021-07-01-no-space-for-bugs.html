@@ -1,0 +1,58 @@
+---
+layout: post
+title: No Space For Bugs
+---
+<h1>{{ page.title }}</h1>
+
+<p>
+In the previous article about <code>maph</code> and <code>Enumerator#key</code>, I didn't motivate why I believed that these methods,
+which add no functionality and purely allow code to be written slightly differently, are worthwhile. You can plot these different approaches on a chart.
+Somewhere to the left is the for-loop (when asked about adding functions like <code>map</code>,
+Rob Pike, the creator of Go, said "Just use a for-loop"). Then we have <code>each</code> or <code>forEach</code> with a block, then <code>map</code>
+itself, and then to the right is Ruby's symbol notation, <code>select(&:even?)</code>. Finally, far to the right, there's Lisp.
+</p>
+<p>
+Look at these fragments:
+</p>
+<pre>
+# 1) for loop
+names = []
+for h in users
+  names.push(h["name"])
+end
+
+# 2) each
+names = []
+users.each {|h| names.push(h["name"]) }
+
+# 3) map
+names = users.map {|h| h["name"] }
+
+# 4) maph
+names = users.maph("name")
+</pre>
+
+<p>
+I would argue that the essential property that changes in these examples is not primarily code length.
+Nor is it readability, which is in the eye of the beholder; I bet there are many programmers that would argue that
+the for-loop is much more readable than the <code>maph</code> example.
+</p>
+
+<p>
+What actually changes is that the examples are progressively less like code. Technically, of course, there is no
+difference. But I can refer to "the set of first names of my co-workers" without saying what they are or
+mentioning a procedure to enumerate them. And similarly, I can refer to <code>users.maph("name")</code>. It is a
+recipe for producing the names of these data structures with user data, but simultaneously, it is the thing itself.
+</p>
+
+<p>
+Nor is there any space for bugs in <code>users.maph("name")</code>. Which is not to say that it does what you want - maybe
+<code>name</code> doesn't refer to the kind of name you need, maybe <code>users</code> contains
+<code>User</code> objects instead of hashes, maybe some of them are nil. So, yes, the "What" aspect may still be incorrect. But the "How" aspect is simply Not Interesting - there is nothing to debug,
+nothing to review.
+</p>
+
+<p>In a way, the goal is to have a declarative language for basic operations on arrays and hashes, just like there is XPath for XML, selectors for CSS,
+and <a href="https://stedolan.github.io/jq/">jq</a> for JSON.
+</p>
+
