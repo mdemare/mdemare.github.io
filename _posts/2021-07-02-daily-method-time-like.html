@@ -1,0 +1,38 @@
+---
+layout: post
+title: The Daily Method - Time#like
+---
+<h1>{{ page.title }}</h1>
+<h2>Formatting Time Without Looking at The Manual</h2>
+<p>
+  I don't always format time, but when I do, I can never remember if <code>m</code> means "month" or "minute",
+  what's the code for the name of the month, either abbreviated or full, how to make sure that the date gets a
+  leading zero, and so on. In fact, I nearly always have to look up something, and when I guess, I often guess wrong.
+</p>
+<p>That's why I wrote the <a href="https://github.com/mdemare/like_1999">like_1999 gem</a>. All it does is add an instance method on
+the <code>Time</code> class called <code>like</code>. Instead of using format directives to specify attributes of the Time object, you just say what the output should be if it were
+exactly one minute before the end of the previous century (Sun 12-31-99 11:59:00 PM).
+</p>
+
+<p>Here are some examples</p>
+
+<pre>
+t = Time.now
+=> 2021-07-02 21:59:19.784004 +0200
+
+t.like("Sunday DECEMBER 31, 11:59 PM")
+=> "Friday JULY 02, 09:59 PM"
+
+t.like("Sun 31 dec")
+=> "Fri 02 jul"
+
+t.like("12-31-99")
+
+=> "07-02-21"
+
+t.like("Next sunday at 11 o'clock")
+=> "Next friday at 09 o'clock"
+
+t.like("Sun 12-31-99 11:59 PM UTC")
+=> "Fri 07-02-21 09:59 PM CEST"
+</pre>
