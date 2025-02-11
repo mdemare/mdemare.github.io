@@ -1,0 +1,660 @@
+*, ::after, ::before {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    background: 0 0;
+    text-decoration: none;
+    outline: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    color: inherit;
+    border: 0;
+    list-style: none;
+    font-synthesis: none;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "liga"
+}
+
+:active, :visited {
+    color:inherit
+}
+
+@font-face {
+    font-family: "Iowan BT";
+    font-style: normal;
+    font-stretch: normal;
+    font-display: swap;
+    font-weight: 700;
+    src: url(/assets/css/fonts/IowanOldStyleBTBold.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: "Iowan BT";
+    font-style: italic;
+    font-stretch: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url(/assets/css/fonts/IowanOldStyleBTItalic.woff2) format("woff2")
+}
+
+@font-face {
+    font-family: "Iowan BT";
+    font-style: normal;
+    font-stretch: normal;
+    font-display: swap;
+    font-weight: 400;
+    src: url(/assets/css/fonts/IowanOldStyleBTRoman.woff2) format("woff2")
+}
+
+:root {
+    --text: hsl(0, 0%, 28%);
+    --title: hsl(0, 0%, 26%);
+    --link: #FFF7B1;
+    --link-hover: #FFEE50;
+    --lines: hsl(0, 0%, 94%);
+    --bg-alt: hsl(0, 0%, 98%);
+    --bg-hover: hsl(0, 0%, 98%);
+    --bg: hsl(0, 0%, 100%);
+    --bgl: #F7F7F7;
+    --h: #FFEC3D66;
+    --hl: #FFEC3DE6;
+    --t: #444;
+    --tm: #888;
+    --tl: #F2F2F2;
+    --font-family: "Iowan Old Style", "Iowan", "Iowan BT", "Palatino Linotype", "URW Palladio L", P052, serif;
+    --font-family-sans: system-ui, sans-serif;
+    --font-family-mono: ui-monospace, "Cascadia Code", "Source Code Pro", Menlo, Consolas, "DejaVu Sans Mono", monospace;
+    --font-size: clamp(14px, 0.39vw + 12.244px, 22px);
+    --font-line-height: clamp(26px, 0.78vw + 22.488px, 42px);
+    --font-style: normal;
+    --ls: 9rem;
+    --ln: 18rem;
+    --lw: 36rem;
+    --text-width: 18rem;
+    --cards-width: 27rem;
+    --media-width: 36rem;
+    --type-base: clamp(14px, 0.39vw + 12.244px, 22px);
+    --type-xs: calc(var(--type-base) * 0.75);
+    --type-s: calc(var(--type-base) * 0.9);
+    --type-m: calc(var(--type-base) * 1.2);
+    --type-l: calc(var(--type-base) * 1.4);
+    --type-xl: calc(var(--type-base) * 1.6);
+    font-size: var(--font-line-height);
+    font-family: var(--font-family);
+    font-style: var(--font-style);
+    background: var(--bg);
+    color: var(--text);
+    scroll-padding-top:1.5rem
+}
+
+::selection {
+    background: var(--link);
+    color:var(--text)
+}
+
+body {
+    padding:5rem 1rem 1.5rem
+}
+
+*, ::after, ::before {
+    font-size: var(--font-size);
+    line-height:1rem
+}
+
+blockquote, details, figure, form, h1, h2, h3, h4, h5, h6, hr, nav, ol, p, pre, ul {
+    margin-right: auto;
+    margin-left: auto;
+    max-width:var(--text-width)
+}
+
+h1, h2, h3, h4, h5, h6 {
+    color: var(--title);
+    font-weight:700
+}
+
+h2 {
+    font-size:calc(var(--fs) * var(--sl))
+}
+
+main h2, main h3, pre {
+    margin-bottom:1rem
+}
+
+h3, h4, h5, h6 {
+    font-size: calc(var(--fs) * var(--sm));
+    line-height:1rem
+}
+
+a {
+    font-weight: inherit;
+    line-height:inherit
+}
+
+:is(p, figcaption, li, td, small) a {
+    text-decoration: underline;
+    text-decoration-color: var(--link);
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: .5em;
+    text-underline-offset: -.25em;
+    transition:text-decoration .3s
+}
+
+:is(p, figcaption, li, td, small) a:hover {
+    text-decoration-color:var(--link-hover)
+}
+
+h1 > a {
+    text-decoration:none
+}
+
+h1, h2, h3, h4, h5, h6 {
+    line-height:1.5
+}
+
+main h1, main h2, main h3, main h4, main h5, main h6 {
+    margin-bottom:2em
+}
+
+main h1:not(:first-child), main h2:not(:first-child), main h3:not(:first-child), main h4:not(:first-child), main h5:not(:first-child), main h6:not(:first-child) {
+    margin-top:3em
+}
+
+h1 {
+    font-size:var(--type-xl)
+}
+
+h2 {
+    font-size:var(--type-l)
+}
+
+h2, h3, h4, h5, h6, main hr {
+    text-align:center
+}
+
+p + p {
+    text-indent: .5rem;
+    margin-top:.5rem
+}
+
+main hr {
+    display: block;
+    border: 0;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    width:var(--ls)
+}
+
+main hr::before {
+    content: "✽  ✽  ✽";
+    white-space: pre;
+    opacity:.25
+}
+
+blockquote {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    padding: .5rem;
+    background:var(--bg-alt)
+}
+
+blockquote p {
+    text-indent:0
+}
+
+blockquote small {
+    text-align: right;
+    font-size: var(--type-xs);
+    line-height: 1.8;
+    font-family: var(--font-family-sans);
+    display:block
+}
+
+blockquote.guest {
+    background: var(--bg-alt);
+    padding: 1rem;
+    border-radius:5px
+}
+
+blockquote.guest b, blockquote.guest em, blockquote.guest strong {
+    font-style:normal
+}
+
+b, strong {
+    font-weight:700
+}
+
+.current, blockquote p, em, i {
+    font-style:italic
+}
+
+a, em, strong {
+    font-size:inherit
+}
+
+code {
+    font-family: var(--font-family-mono);
+    background:var(--tl)
+}
+
+dl:not(:first-child), ol:not(:first-child), pre:not(:first-child), ul:not(:first-child) {
+    margin-top:1rem
+}
+
+pre code {
+    font-family: var(--font-family-mono);
+    background: var(--bg-alt);
+    padding: .75rem;
+    display: block;
+    overflow-x: auto;
+    white-space:pre
+}
+
+li code, p code {
+    display: inline-block;
+    text-indent: 0;
+    padding:0 .25rem
+}
+
+dl:not(:last-child), ol:not(:last-child), ul:not(:last-child) {
+    margin-bottom:1rem
+}
+
+dl li, ol li, ul li {
+    list-style-position:inside
+}
+
+ol li {
+    list-style-type:decimal
+}
+
+ul li {
+    list-style-type:circle
+}
+
+del {
+    text-decoration: line-through;
+    text-decoration-color: var(--t);
+    text-decoration-thickness:.2em
+}
+
+table {
+    margin: 1rem auto;
+    width: 100%;
+    max-width: var(--media-width);
+    border-collapse:collapse
+}
+
+thead {
+    background:var(--bg-alt)
+}
+
+table, tbody, thead {
+    border:1px solid var(--lines)
+}
+
+th {
+    font-family:var(--font-family-sans)
+}
+
+input[type=text], td, textarea, th {
+    font-size: var(--type-s);
+    border:1px solid var(--lines)
+}
+
+td, th {
+    text-align: left;
+    padding:0 .25rem
+}
+
+form {
+    margin-top: 2rem;
+    margin-bottom:2rem
+}
+
+label {
+    display: block;
+    margin-bottom:1rem
+}
+
+label span {
+    font-size: var(--type-m);
+    font-weight:700
+}
+
+input[type=text], textarea {
+    padding: .15rem .5rem;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    margin-top: .25rem;
+    resize:none
+}
+
+input[type=text]:focus, textarea:focus {
+    outline:2px solid var(--link)
+}
+
+input[type=text]:focus::placeholder, textarea:focus::placeholder {
+    opacity:.2
+}
+
+label small {
+    font-size: var(--type-s);
+    line-height: 1.8;
+    display: block;
+    font-style:italic
+}
+
+label[for=website] {
+    position: fixed;
+    top: -999999px;
+    left:-999999px
+}
+
+input[type=submit] {
+    font-size: var(--type-xs);
+    text-align: center;
+    border: 1px solid var(--lines);
+    padding: 0 1rem;
+    border-radius: 5px;
+    line-height: 3;
+    font-family: var(--font-family-sans);
+    transition: background .2s;
+    display: block;
+    margin-top: 1rem;
+    cursor: pointer;
+    margin-left:auto
+}
+
+input[type=submit]:hover, summary:hover {
+    background:var(--bg-hover)
+}
+
+input[type=submit]:focus {
+    outline:2px solid var(--link)
+}
+
+details {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--lines);
+    border-radius:5px
+}
+
+details div {
+    padding: .5rem;
+    border-top:1px solid var(--lines)
+}
+
+details :is(ol, ul) li {
+    list-style-position:inside
+}
+
+details summary::-webkit-details-marker {
+    display:none
+}
+
+summary {
+    text-align: left;
+    transition: background .2s;
+    display: block;
+    cursor: pointer;
+    font-style: italic;
+    padding:.5rem
+}
+
+summary::after {
+    content: "▸";
+    float: right;
+    opacity:.25
+}
+
+details[open] summary::after {
+    content: "▾"
+}
+
+.m-o {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    max-width:var(--media-width)
+}
+
+.img, .video {
+    display: block;
+    max-width: 100%;
+    max-height: 80vh;
+    border-radius: 2px;
+    margin:auto
+}
+
+.guest img {
+    display: block;
+    width: 100%;
+    height: auto;
+    margin-bottom:.5rem
+}
+
+.mv-i {
+    padding-bottom: 56.25%;
+    height: 0;
+    background: var(--bg-alt);
+    position:relative
+}
+
+.mv-i embed, .mv-i iframe, .mv-i object {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height:100%
+}
+
+figcaption {
+    font-style: italic;
+    margin-top: 1em;
+    line-height: .75rem;
+    text-align: center;
+    font-size:var(--type-s)
+}
+
+[data-template=with] .m-m {
+    padding: 1rem;
+    background:var(--bg-alt)
+}
+
+[data-template=with] .img {
+    box-shadow:0 15px 25px rgba(0, 0, 0, .2)
+}
+
+main {
+    margin-bottom:3rem
+}
+
+nav:last-child {
+    margin-bottom:7rem
+}
+
+nav h2 {
+    margin-bottom:1em
+}
+
+nav > h3 {
+    display: flex;
+    align-items: center;
+    margin-top: 2em;
+    margin-bottom:.5em
+}
+
+h3 span {
+    font-size: calc(var(--fs) * var(--sm));
+    line-height:1rem
+}
+
+h3 span:last-child {
+    margin-left:auto
+}
+
+nav > a {
+    transition: color .3s ease-out;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    grid-gap:.3rem
+}
+
+nav > a:hover {
+    color:var(--tm)
+}
+
+nav a p {
+    text-align: left;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width:100%
+}
+
+nav hr {
+    margin: 0 0 .3rem;
+    align-self: end;
+    height: 1px;
+    border: 0;
+    border-bottom: 1px dotted var(--t);
+    opacity: .25;
+    min-width: 1rem;
+    width:100%
+}
+
+footer, section {
+    text-align:center
+}
+
+section {
+    margin-bottom:3rem
+}
+
+section h2 {
+    font-size: var(--type-m);
+    margin-bottom:1rem
+}
+
+footer a, section p {
+    font-size:var(--type-s)
+}
+
+section p {
+    line-height: .75rem;
+    font-style:italic
+}
+
+footer {
+    margin-top: 4rem;
+    display: flex;
+    justify-content: center;
+    gap:.3rem
+}
+
+footer a {
+    font-family: var(--font-family-sans);
+    text-decoration: underline;
+    text-decoration-color: var(--bg);
+    text-decoration-skip-ink: none;
+    text-decoration-thickness: .5em;
+    text-underline-offset: -.25em;
+    transition:text-decoration .3s
+}
+
+footer a:hover {
+    text-decoration-color:var(--link-hover)
+}
+
+.supporters {
+    margin-right: auto;
+    margin-left: auto;
+    max-width: var(--cards-width);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap:.5rem
+}
+
+.supporters li {
+    list-style: none;
+    position:relative
+}
+
+.supporters li span {
+    cursor:not-allowed
+}
+
+.supporters li a:nth-child(1), .supporters li span {
+    font-size: var(--type-s);
+    display: block;
+    border: 1px solid var(--lines);
+    border-radius: 5px;
+    padding: .25rem .5rem;
+    line-height:1rem
+}
+
+.supporters li a:nth-child(2) {
+    font-size: var(--type-xs);
+    font-family: var(--font-family-sans);
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    padding: .25rem .5rem;
+    border: 1px solid var(--lines);
+    border-radius: 0 5px 5px 0;
+    background:var(--bg)
+}
+
+.supporters li a {
+    text-decoration: none;
+    transition-property:background
+}
+
+.supporters li a:hover {
+    background:var(--bg-hover)
+}
+
+@media (min-width: 600px) {
+    dl li, ol li, ul li {
+        list-style-position:outside
+    }
+
+    .m-o {
+        margin-top:3rem
+    }
+
+    [data-template=with] .m-m {
+        padding:2rem
+    }
+
+    main {
+        margin-bottom:5rem
+    }
+
+    .m-o, section {
+        margin-bottom:3rem
+    }
+
+    footer {
+        margin-top:5rem
+    }
+}
+
+@media (min-width: 450px) {
+    .supporters {
+        grid-template-columns:1fr 1fr
+    }
+}
+
+@media (min-width: 800px) {
+    .supporters {
+        grid-template-columns: 1fr 1fr 1fr
+    }
+}

@@ -1,22 +1,61 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en-us">
+<html lang="en">
+
 <head>
-   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
-   <title>{{ page.title }}</title>
-   <meta name="author" content="Michiel de Mare" />
-
-   <!-- Homepage CSS -->
-   <link rel="stylesheet" href="/css/screen.css" type="text/css" media="screen, projection" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="author" content="Michiel de Mare" />
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <title>{{ page.title }}</title>
+  <link rel="stylesheet" href="css/cv.css">
 </head>
-<body>
 
-<div class="site">
-  <div class="title">
-    <a href="/">Michiel de Mare</a>
+<body>
+  <div class="container">
+  {{ content }}
   </div>
 
-  {{ content }}
+  <nav>
+    {% assign latest_post = site.posts | sort: 'date' | last %}
+    {% assign date_to_ord = {1 => 'st',2 => 'nd', 3 => 'rd',21 => 'st',22 => 'nd', 23 => 'rd',31 => 'st'} %}
+    {% assign latest_post_year = latest_post.date | date: "%Y" %}
+    {% assign latest_post_month = latest_post.date | date: "%m" %}
+    {% assign monthly_posts = site.posts | where: "date", latest_post_year | append: '-' | append: latest_post_month %}
 
-</div>
+    <h2>{{ latest_post.date | date: "%B" }}'s Thoughts</h2>
+
+    {% for post in monthly_posts %}
+      <a href="{{ post.url }}"{% if post.url == page.url %}class="active"{% endif %}>
+        <p>{{ post.title }}</p>
+        <hr>
+        {% assign date = post.date | date: "%-d" %}
+        <span>{{ date }}{{ date_to_ord[date.to_i] || 'th' }}</span>
+      </a>
+    {% endfor %}
+
+    {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+    {% for year_group in posts_by_year %}
+      {% assign posts_by_month = year_group.items | group_by_exp: "post", "post.date | date: '%B'" %}
+      {% for month_group in posts_by_month %}
+        {% if month_group.name != latest_post_month || year_group.name != latest_post_year %}
+          <h3>
+            {% if forloop.last %}
+              <span>{{ year_group.name }}</span>
+            {% endif %}
+            <span>{{ month_group.name }}</span>
+          </h3>
+
+          {% for post in month_group.items %}
+            <a href="{{ post.url }}"{% if post.url == page.url %}class="active"{% endif %}>
+              <p>{{ post.title }}</p>
+              <hr>
+              {% assign date = post.date | date: "%-d" %}
+              <span>{{ date }}{{ date_to_ord[date.to_i] || 'th' }}</span>
+            </a>
+          {% endfor %}
+        {% endif %}
+      {% endfor %}
+    {% endfor %}
+  </nav>
 </body>
 </html>
