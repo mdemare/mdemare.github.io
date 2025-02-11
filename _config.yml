@@ -1,0 +1,3 @@
+collections:
+  articles:
+    output: true

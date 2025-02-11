@@ -105,7 +105,7 @@ body {
     line-height:1rem
 }
 
-blockquote, details, figure, form, h1, h2, h3, h4, h5, h6, hr, nav, ol, p, pre, ul {
+blockquote, details, figure, form, h1, h2, h3, h4, h5, h6, hr, nav, ol, p, pre, ul, div.paragraph {
     margin-right: auto;
     margin-left: auto;
     max-width:var(--text-width)
@@ -171,7 +171,7 @@ h2 {
     font-size:var(--type-l)
 }
 
-h2, h3, h4, h5, h6, main hr {
+h2, h3, main hr {
     text-align:center
 }
 
@@ -273,7 +273,11 @@ ol li {
 }
 
 ul li {
-    list-style-type:circle
+    list-style-type:none
+}
+
+.job {
+    margin-bottom: 1rem;
 }
 
 del {
@@ -533,7 +537,11 @@ footer, section {
     text-align:center
 }
 
-section {
+section li {
+    text-align: left
+}
+
+section,.contact {
     margin-bottom:3rem
 }
 

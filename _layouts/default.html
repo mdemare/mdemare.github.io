@@ -7,7 +7,7 @@
   <meta name="author" content="Michiel de Mare" />
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <title>{{ page.title }}</title>
-  <link rel="stylesheet" href="css/all.css">
+  <link rel="stylesheet" href="/css/all.css">
 </head>
 
 <body>
@@ -16,45 +16,32 @@
   </div>
 
   <nav>
-    {% assign latest_post = site.posts | sort: 'date' | last %}
-    {% assign date_to_ord = {1 => 'st',2 => 'nd', 3 => 'rd',21 => 'st',22 => 'nd', 23 => 'rd',31 => 'st'} %}
-    {% assign latest_post_year = latest_post.date | date: "%Y" %}
-    {% assign latest_post_month = latest_post.date | date: "%m" %}
-    {% assign monthly_posts = site.posts | where: "date", latest_post_year | append: '-' | append: latest_post_month %}
+    {% assign all_articles = site.articles | sort: 'date' | reverse %}
+    {% assign date_to_ord = {'1' => 'st','2' => 'nd', '3' => 'rd','21' => 'st','22' => 'nd', '23' => 'rd','31' => 'st'} %}
 
-    <h2>{{ latest_post.date | date: "%B" }}'s Thoughts</h2>
+    <h2>{{ all_articles.first.date | date: "%B" }}'s Thoughts</h2>
 
-    {% for post in monthly_posts %}
-      <a href="{{ post.url }}"{% if post.url == page.url %}class="active"{% endif %}>
-        <p>{{ post.title }}</p>
-        <hr>
-        {% assign date = post.date | date: "%-d" %}
-        <span>{{ date }}{{ date_to_ord[date.to_i] || 'th' }}</span>
-      </a>
-    {% endfor %}
+    {% for article in all_articles %}
+      {% assign current_yd = article.date | date: "%Y%m" %}
+      {% assign previous_yd = last_article.date | date: "%Y%m" %}
+      {% assign current_y = article.date | date: "%Y" %}
+      {% assign previous_y = last_article.date | date: "%Y" %}
 
-    {% assign posts_by_year = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
-    {% for year_group in posts_by_year %}
-      {% assign posts_by_month = year_group.items | group_by_exp: "post", "post.date | date: '%B'" %}
-      {% for month_group in posts_by_month %}
-        {% if month_group.name != latest_post_month || year_group.name != latest_post_year %}
-          <h3>
-            {% if forloop.last %}
-              <span>{{ year_group.name }}</span>
-            {% endif %}
-            <span>{{ month_group.name }}</span>
-          </h3>
-
-          {% for post in month_group.items %}
-            <a href="{{ post.url }}"{% if post.url == page.url %}class="active"{% endif %}>
-              <p>{{ post.title }}</p>
-              <hr>
-              {% assign date = post.date | date: "%-d" %}
-              <span>{{ date }}{{ date_to_ord[date.to_i] || 'th' }}</span>
-            </a>
-          {% endfor %}
+    {% if forloop.first == false and current_yd != previous_yd %}
+      <h3>
+        {% if current_y != previous_y %}
+          <span>{{ current_y }}</span>
         {% endif %}
-      {% endfor %}
+        <span>{{ article.date | date: "%B" }}</span>
+      </h3>
+      {% endif %}
+      <a href="{{ article.url }}"{% if article.url == page.url %}class="active"{% endif %} title="{{ current_yd }} {{ previous_yd }}">
+        <p>{{ article.title }}</p>
+        <hr>
+        {% assign date = article.date | date: "%-d" %}
+        <span>{{ date }}{{ date_to_ord[date] | default: 'th' }}</span>
+      </a>
+      {% assign last_article = article %}
     {% endfor %}
   </nav>
 </body>
