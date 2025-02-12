@@ -1,0 +1,15 @@
+---
+layout: post
+title: How To Structure Programs
+date: 2025-02-14 12:00:00
+---
+
+<p>
+My gut feeling is that we're not structuring programs properly. Programs are a mess.  I've got a few suggestions for improvements, but this is a difficult problem.
+</p>
+<p>
+  Programs are held together by functions, both where that's appropriate, and where it's not.  Ideally, a function does one job, easily described, but not trivial, does not have side effects, and is generally useful. In practice, functions have very blurry boundaries, their description is about as long as their code, and are sometimes called from only one site.
+</p>
+<p>
+  I believe we don't have a good answer for duplicated code, and therefore we abuse functions.
+</p>

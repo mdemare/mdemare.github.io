@@ -1,0 +1,11 @@
+---
+layout: post
+title: Inaccessible Code
+date: 2025-02-17 14:00:00
+---
+
+Some code can be easily as it is written, but most code is embedded in a context. A Java Spring service has all kinds of dependencies that must be injected, a Rails action only runs when Rails is running, including all its middleware and a database with actual data in it, and you need to access it via a valid http call, etc.
+
+This is a problem, and not just because this makes it hard to test. Inaccessible code is not just hard to unit test, but also hard to test manually, it's hard to change, it's hard to tinker and experiment with, and it's hard to debug.
+
+On the other hand, scripts, REPLs, Jupyter notebook are at the other end of the spectrum. They are very accessible, and a delight to work with, but they struggle when the scope increases. A script ceases to be a script as you add more functions, classes and modules. A REPL struggles when too much code has been entered, or when there is too much output. Jupyter notebooks struggle when the amount of code in the notebook exceeds a certain size, and when the internal state gets out of sync with the code. Both are also ill-suited for services, concurrency or UIs.

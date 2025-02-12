@@ -422,6 +422,10 @@ details[open] summary::after {
     content: "▾"
 }
 
+.container {
+    margin-bottom: 2rem;
+}
+
 .m-o {
     margin-top: 2rem;
     margin-bottom: 2rem;

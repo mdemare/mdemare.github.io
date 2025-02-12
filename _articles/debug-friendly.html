@@ -1,0 +1,18 @@
+---
+layout: post
+title: Debug Friendly
+date: 2024-11-30 12:00:00
+---
+
+<p>
+  One of the things that is most difficult to internalize in programming is that your program will not work the first couple of times that you try it. When it seems to work, it will still have defects. After you've fixed all the defects, new defects will appear due to code changes, third party software updates, or new hardware.
+</p>
+<p>
+  As this is pretty much life as we know it for us programmers, the question then becomes, what do we do about it? How do we spot defects? How do we get notified of spotted defects? How do we handle defects in the code? And how do we figure out what the cause of the defects is?
+</p>
+<p>
+  For functional code, you can just write unit tests. Preconditions and postconditions are useful too. It is a defect in the caller to call a function with arguments that do not meet the preconditions. It is a defect in the function to return a value that doesn't meet the postconditions.
+</p>
+<p>
+  However, for higher level code, which often orchestrates calls to multiple systems (filesystem, databases, network calls) you will need logging and assertions. Logging should be structured, not simple printf statements. Different calls (database, http calls) will need different log statement structures. Log statements should not reside in a text file, but should be (bulk) imported in a database, (not the main database). You should have columns for the common types of data in a log entry, and store the rest of them in a json column. You might want to use several tables for different logging statements. To search in the logs, use an application, don't use SQL.
+</p>
