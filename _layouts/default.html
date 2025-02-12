@@ -35,7 +35,7 @@
         <span>{{ article.date | date: "%B" }}</span>
       </h3>
       {% endif %}
-      <a href="{{ article.url }}"{% if article.url == page.url %}class="active"{% endif %} title="{{ current_yd }} {{ previous_yd }}">
+      <a href="{{ article.url }}"{% if article.url == page.url %}class="active"{% endif %}>
         <p>{{ article.title }}</p>
         <hr>
         {% assign date = article.date | date: "%-d" %}
