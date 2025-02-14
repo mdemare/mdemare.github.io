@@ -15,34 +15,18 @@
   {{ content }}
   </div>
 
-  <nav>
-    {% assign all_articles = site.articles | sort: 'date' | reverse %}
-    {% assign date_to_ord = {'1' => 'st','2' => 'nd', '3' => 'rd','21' => 'st','22' => 'nd', '23' => 'rd','31' => 'st'} %}
-
-    <h2>{{ all_articles.first.date | date: "%B" }}'s Thoughts</h2>
-
-    {% for article in all_articles %}
-      {% assign current_yd = article.date | date: "%Y%m" %}
-      {% assign previous_yd = last_article.date | date: "%Y%m" %}
-      {% assign current_y = article.date | date: "%Y" %}
-      {% assign previous_y = last_article.date | date: "%Y" %}
-
-    {% if forloop.first == false and current_yd != previous_yd %}
-      <h3>
-        {% if current_y != previous_y %}
-          <span>{{ current_y }}</span>
-        {% endif %}
-        <span>{{ article.date | date: "%B" }}</span>
-      </h3>
-      {% endif %}
-      <a href="{{ article.url }}"{% if article.url == page.url %}class="active"{% endif %}>
-        <p>{{ article.title }}</p>
-        <hr>
-        {% assign date = article.date | date: "%-d" %}
-        <span>{{ date }}{{ date_to_ord[date] | default: 'th' }}</span>
-      </a>
-      {% assign last_article = article %}
-    {% endfor %}
-  </nav>
+  <section>
+    <h2>What should you do next?</h2>
+    <div>
+      <p>
+        Read my <a href="/articles">articles</a>.
+        Explore my <a href="/projects">projects</a>.
+        View my <a href="/cv">resume</a>.
+        Connect via <a href="mailto:michiel@mdemare.nl">email</a>.
+        Visit my <a href="https://github.com/mdemare">GitHub account.</a>.
+        Follow the site using <a href="https://mdemare.nl/feed.xml">RSS</a>.
+      </p>
+    </div>
+  </section>
 </body>
 </html>

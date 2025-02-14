@@ -1,0 +1,28 @@
+---
+layout: post
+title: The Shape Of Code
+date: 2025-02-23 14:00:00
+abstract: Code has a shape, text is not so obvious a choice for source code as you might think, here are some problems, these are some benefits of an alternate approach.
+---
+
+<p>
+Code has a shape. Compiled code doesn't care much about shapes. You might say that compiled code is a one-dimensional array, but, since machine instructions have random access, you might also say that they form a fully connected graph.
+</p>
+<p>
+Source code is a different story. In most higher-level languages (notable exceptions are Forth-like languages) , source code is parsed into an abstract syntax tree, which is a directed acyclic tree. The source code itself however does not form a tree, but, depending on how you look at it, a one-dimensional array of characters, an array of lines consisting of an array of characters, or a two-dimensional array with a horizontal limit, but no vertical one. None of those representations resembles a tree, and yet trees assemble we must.
+</p>
+<p>
+What do we need trees for? Trees are an incredibly versatile data structure, very suited for hierarchical information, which is how we like to organize our programs: Classes composed of functions, composed of if statements, composed of expressions, etc. Human language itself is well-suited to being fitted into a tree, which is how most grammars work. (Although with the advent of Large Language Models, the idea of a universal grammar should in my opinion be tossed into the garbage.)
+</p>
+<p>
+Why then do we use a two-dimensional shape for source code? Because paper is two-dimensional, and computer screens are two-dimensional. And we're been so accustomed to the pages of books representing a very long scroll, rather than a vast canvas sprawling in two dimensions that we used the invention of scrolling mostly for the vertical dimension, not the horizontal one.
+</p>
+<p>
+However, the mismatch between the shape of the source code, and the shape of the ideas we wish to express imposes real costs on us, and we developers are not sufficiently aware of them. There are costs, but I'd like to name a small one and a bigger one.
+</p>
+<p>
+The small one is the problem of diffs, and merging conflicts. Because diffs are executed on the two-dimensional structure, and not on the abstract syntax tree itself, trivial changes including but not limited to indentation changes, can cause diffs to become unreadable, and can cause merge conflicts, even though the abstract syntax tree hasn't change. Or take set literals - <code>#{:apple :pear :orange}</code> in Clojure. A set has no order, so there shouldn't be a difference between that set and <code>#{:pear :apple :orange}</code> - it's the same set. But using a textual representation, there is a difference. Rules that automatically format code limit the damage, but only to a certain extent.
+</p>
+<p>
+A bigger problem is the problem of code duplication. With a textual representation, code used in multiple places must be duplicated, or it must be extracted to a function. Not every piece of duplicated code deserves its own function (a topic for a separate essay), and additionally, when you extract it, it's not in the original place anymore, so you need to jump around to follow the flow of the code, in a text editor. With a tree representation, the same can be referred to from multiple places, inline. When you edit such a code fragment, the editor warns you that multiple places refer to that code, and lets you make an informed edition whether to edit it for all calling places, or just the current one.
+</p>

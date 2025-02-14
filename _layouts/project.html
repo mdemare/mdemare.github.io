@@ -1,0 +1,20 @@
+---
+layout: default
+---
+<div id="project">
+<h1>{{ page.title }}</h1>
+<h4>github: {{ page.github }}</h4>
+{% if page.website %}
+<h4>Website: {{ page.website }}</h4>
+{% endif %}
+<p>{{ page.description }}</p>
+{{ content }}
+<nav>
+  {% for project in site.projects %}
+    <h3>
+    <a href="{{ project.url }}"{% if project.url == page.url %}class="active"{% endif %}>
+      <p>{{ project.title }}</p>
+    </a>
+  {% endfor %}
+</nav>
+</div>

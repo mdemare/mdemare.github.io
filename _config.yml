@@ -1,3 +1,11 @@
+title:
+  Michiel de Mare
+url:
+  https://mdemare.nl/
+description:
+  The personal website of Michiel de Mare
 collections:
   articles:
+    output: true
+  projects:
     output: true

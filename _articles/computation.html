@@ -2,15 +2,33 @@
 layout: post
 title: Computation
 date: 2025-02-13 14:00:00
+abstract: "Explain the essence of computation: generating output based on inputs. Describe different types of inputs and outputs. Contrast the classical way of computation with the ML way."
+feedback: "Morphs into a criticism of functions halfway through."
 ---
 
-
-<p>The best way I know to define what computing is, is to imagine an input, any input, from an entered key to a reading of a GPS chip, and an output, any output, from a speaker beep to a digital video, and imagine the process of creating the output based on the input. That process is computation. If you know how to tell a computer how to do it, then you're a programmer, and if your computer is powerful enough, you've got a program.</p>
-<p>If you don't know how to do it, but you have enough examples of inputs and outputs, then you can turn to machine learning. All machine learning programs are similar, they too create outputs based on inputs, and the more inputs and outputs they've seen, the more accurate their computations will be.</p>
-<p>Computation as creating outputs based on inputs (originally I wrote "turning inputs into outputs" but I think that gives the wrong impression) is omnipresent. You can reduce any example to this model, even ones that don't seem to fit all that well, such as the note-taking app I'm using right now, by adding a state to the input and the output. A computation takes the old state of the world, and an input, and returns the new state of the world. In simulations, the only input you need is the old state of the world, and it will evolve naturally, with the output of one computation becoming the input of the next.</p>
-<p>Coincidentally (or not so coincidentally), a function, that foundation of nearly any programming language, is also a computation with an input and an output. Functions are the building blocks of any program, and they're composable. Big functions are composed of small functions. I think that's a mistake.</p>
-<p>High levels functions that do a lot of work should not be represented as functions, but as specific patterns, from a library of patterns. The implementations of a patterns should not leave room for low-level programming constructs, but the pattern should support logging, debugging support, performance instrumentation, program flow, error flow, typing, and probably more.</p>
-<p>To give an example, creating a http response based on a http request would be an example of a pipeline pattern. The route is parsed, databases are consulted, an object is created, it's converted to json, and along the way we check for errors, in which case we skip the normal flow and go to the error flow, we perform logging, we measure the performance, and we ensure, at edit time, that each step produces output that the next step can deal with. </p>
-<p>At this level, we log everything that happens - each branch taken, with enough information to debug any surprising occurrence afterward, without writing endless logs.</p>
-<p>On the high level we should not rely on code to orchestrate our apps, when they're in a common format, such as web apps, 2D-platformers, 3D-games, iOS apps, or command line utilities. On a high level, a command line utility should have a configuration file with all options, and entry points for the actual implementation.</p>
-<p>Similarly, a web app should have a meta-app to configure it, making sure that it's set up correctly, and making parts of the app, such as the routing, visual.
+<p>
+  The best way I know to define what computing is, is to imagine an input, any input, from an entered key to a reading of a GPS chip, and an output, any output, from a speaker beep to a digital video, and imagine the process of creating the output based on the input. That process is computation. If you know how to tell a computer how to do it, then you're a programmer, and if your computer is powerful enough, you've got a program.
+</p>
+<p>
+  If you don't know how to do it, but you have enough examples of inputs and outputs, then you can turn to machine learning. All machine learning programs are similar, they too create outputs based on inputs, and the more inputs and outputs they've seen, the more accurate their computations will be.
+</p>
+<p>
+  Computation as creating outputs based on inputs (originally I wrote "turning inputs into outputs" but I think that gives the wrong impression) is omnipresent. You can reduce any example to this model, even ones that don't seem to fit all that well, such as the note-taking app I'm using right now, by adding a state to the input and the output. A computation takes the old state of the world, and an input, and returns the new state of the world. In simulations, the only input you need is the old state of the world, and it will evolve naturally, with the output of one computation becoming the input of the next.
+</p>
+<p>
+  Coincidentally (or not so coincidentally), a function, that foundation of nearly any programming language, is also a computation with an input and an output. Functions are the building blocks of any program, and they're composable. Big functions are composed of small functions. I think that's a mistake.
+</p>
+<p>
+  High levels functions that do a lot of work should not be represented as functions, but as specific patterns, from a library of patterns. The implementations of a patterns should not leave room for low-level programming constructs, but the pattern should support logging, debugging support, performance instrumentation, program flow, error flow, typing, and probably more.
+</p>
+<p>
+  To give an example, creating a http response based on a http request would be an example of a pipeline pattern. The route is parsed, databases are consulted, an object is created, it's converted to json, and along the way we check for errors, in which case we skip the normal flow and go to the error flow, we perform logging, we measure the performance, and we ensure, at edit time, that each step produces output that the next step can deal with.
+</p>
+<p>
+  At this level, we log everything that happens - each branch taken, with enough information to debug any surprising occurrence afterward, without writing endless logs.
+</p>
+<p>
+  On the high level we should not rely on code to orchestrate our apps, when they're in a common format, such as web apps, 2D-platformers, 3D-games, iOS apps, or command line utilities. On a high level, a command line utility should have a configuration file with all options, and entry points for the actual implementation.
+</p>
+<p>
+  Similarly, a web app should have a meta-app to configure it, making sure that it's set up correctly, and making parts of the app, such as the routing, visual.
