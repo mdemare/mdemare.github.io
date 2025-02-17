@@ -3,7 +3,9 @@ layout: default
 ---
 <div id="project">
 <h1>{{ page.title }}</h1>
-<h4>github: {{ page.github }}</h4>
+{% if page.github %}
+<h4>Source Code: <a href="https://github.com/{{ page.github }}">{{ page.github }}</a></h4>
+{% endif %}
 {% if page.website %}
 <h4>Website: {{ page.website }}</h4>
 {% endif %}

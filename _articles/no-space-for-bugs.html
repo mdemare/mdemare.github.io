@@ -2,6 +2,8 @@
 layout: post
 title: No Space For Bugs
 date: 2025-01-03 14:00:00
+abstract: "This is an application of the ideas introduced in How To Structure Programs."
+feedback: "Needs more focus, clearer intentions"
 ---
 
 <p>
@@ -15,20 +17,26 @@ itself, and then to the right is Ruby's symbol notation, <code>select(&:even?)</
 Look at these fragments:
 </p>
 <pre>
-# 1) for loop
+# 1) c-style for loop
+names = []
+for(int i=0; i < len(users); i++) {
+  names.append(users[i]["name"])
+}
+
+# 2) for loop
 names = []
 for h in users
   names.push(h["name"])
 end
 
-# 2) each
+# 3) each
 names = []
 users.each {|h| names.push(h["name"]) }
 
-# 3) map
+# 4) map
 names = users.map {|h| h["name"] }
 
-# 4) maph
+# 5) maph
 names = users.maph("name")
 </pre>
 
@@ -53,5 +61,13 @@ nothing to review.
 </p>
 
 <p>In a way, the goal is to have a declarative language for basic operations on arrays and hashes, just like there is XPath for XML, selectors for CSS,
-and <a href="https://stedolan.github.io/jq/">jq</a> for JSON.
+  and <a href="https://stedolan.github.io/jq/">jq</a> for JSON.
+</p>
+
+<p>
+  It isn't a coincidence that the last example, <code>names = users.maph("name")</code> can be rewritten in Ruby on Rails as <code>names = User.pluck(:name)</code> which runs the SQL query <code>SELECT name FROM users</code> which looks a lot like the last example, but very little like the for loop. SQL, of course, is a declarative language - we specify the *what* not the *how*, just like in the <code>maph</code> example.
+</p>
+
+<p>
+  When you use abstractions that correspond to the domain of relational tables, you don't just make it easier to port that part of the code to a relational database. You also "prime" other developers to think of this code in the familiar terms of relational algebra, together with the entire toolset that's associated with it. If you can use <code>maph</code>, then you should also be able to trivially filter, sort by, group, count, and perform various types of joins.
 </p>
