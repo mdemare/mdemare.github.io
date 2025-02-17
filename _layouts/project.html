@@ -1,20 +1,37 @@
 ---
 layout: default
 ---
-<div id="project">
-<h1>{{ page.title }}</h1>
-<h4>github: {{ page.github }}</h4>
-{% if page.website %}
-<h4>Website: {{ page.website }}</h4>
-{% endif %}
-<p>{{ page.description }}</p>
-{{ content }}
-<nav>
+
+
+
+<div class="project-container">
+  <h2 style="margin: auto; color: black">Projects</h2>
   {% for project in site.projects %}
-    <h3>
-    <a href="{{ project.url }}"{% if project.url == page.url %}class="active"{% endif %}>
-      <p>{{ project.title }}</p>
-    </a>
+    {% if project.unpublished != "true" %}
+      <div class="project-card">
+        {% if project.logo %}
+          <img src="/assets/images/{{ project.logo }}" alt="Project 1 Logo" class="project-logo">
+        {% else %}
+          <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/wcAAwAB/efK7EAAAAAASUVORK5CYII=" alt="No logo" class="project-logo">
+        {% endif %}
+        <div class="project-info">
+          <h3 class="project-title{% if project.url == page.url %} active{% endif %}">{{ project.title }}</h3>
+          {% if project.github %}
+            <a href="https://github.com/{{ project.github }}" class="repo-link" target="_blank">{{ project.github }}</a>
+          {% endif %}
+          <p class="project-desc">{{ project.description }}</p>
+          <div class="project-links">
+            {% if project.screenshot %}
+              <a href="https://{{ project.screenshot }}" target="_blank">
+                <img src="{{ project.screenshot_thumb }}" alt="Project Two Screenshot" class="screenshot-thumbnail">
+              </a>
+            {% endif %}
+            {% if project.website %}
+              <a href="https://{{ project.website }}" target="_blank">{{ project.website }}</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% endif %}
   {% endfor %}
-</nav>
 </div>
