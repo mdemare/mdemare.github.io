@@ -99,8 +99,23 @@
     color:var(--text)
 }
 
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
 body {
-    padding:5rem 1rem 1.5rem
+    padding: 5rem 1rem 1.5rem;
+	background: linear-gradient(-45deg, #fff4f9, #f4f9ff, #f9fff4);
+	background-size: 400% 400%;
+	animation: gradient 30s ease infinite;
 }
 
 *, ::after, ::before {
@@ -123,6 +138,7 @@ h2 {
     font-size:calc(var(--fs) * var(--sl))
 }
 
+
 main h2, main h3, pre {
     margin-bottom:1rem
 }
@@ -139,10 +155,7 @@ a {
 
 :is(p, figcaption, li, td, small) a {
     text-decoration: underline;
-    text-decoration-color: var(--link);
     text-decoration-skip-ink: none;
-    text-decoration-thickness: .5em;
-    text-underline-offset: -.25em;
     transition:text-decoration .3s
 }
 
@@ -566,6 +579,10 @@ section p {
     font-style:italic
 }
 
+section.next p {
+    line-height: 1.5rem;
+}
+
 footer {
     margin-top: 4rem;
     display: flex;
@@ -650,7 +667,6 @@ footer a:hover {
     display: flex;
     align-items: center;
     gap: 16px;
-    border: 1px solid #ddd;
     border-radius: 8px;
     padding: 16px;
     width: 500px;
@@ -666,11 +682,12 @@ footer a:hover {
 }
 .project-info {
     flex-grow: 1;
+    border-left: solid 1px #bbb;
+    padding-left: 10px;
 }
-
 .project-info h3 {
     text-align: left;
-    color: black;
+    color: #555;
 }
 
 .project-title {
